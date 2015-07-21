@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>wftest.server</artifactId>
+		<groupId>wftest</groupId>
+		<version>1.31.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>wftest.server</groupId>
+	<artifactId>wftest.server.ear</artifactId>
+	<packaging>ear</packaging>
+
+
+	<name>wftest.server.ear</name>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.10.1</version>
+
+				<configuration>
+					<version>7</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<initializeInOrder>true</initializeInOrder>
+					<displayName>wftest.vserver</displayName>
+					<applicationName>wftest.server.ear</applicationName>
+					<modules>
+                        <ejbModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>wftest.server.acre</artifactId>
+                            <bundleFileName>wftest.server.acre.jar</bundleFileName>
+							<uri>wftest.server.acre.jar</uri>
+                        </ejbModule>
+						<ejbModule>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>wftest.server.ejb</artifactId>
+							<bundleFileName>wftest.server.ejb.jar</bundleFileName>
+							<uri>wftest.server.ejb.jar</uri>
+						</ejbModule>
+
+						<webModule>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>wftest.server.backend.web</artifactId>
+							<contextRoot>eu/backend</contextRoot>
+							<bundleFileName>wftest.server.backend.web.war</bundleFileName>
+							<uri>wftest.server.backend.web.war</uri>
+						</webModule>
+
+					</modules>
+				    <archive>
+						<manifestEntries>
+							<Version-Number>${project.version}</Version-Number>
+							<Version-Description>${prop.desc}</Version-Description>
+							<Version-Timestamp>${maven.build.timestamp}</Version-Timestamp>
+							<!-- implementation version is used for build id on deployment -->
+							<Implementation-Version>${project.version}</Implementation-Version>
+						</manifestEntries>
+					</archive>						
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wftest.server.ejb</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+        <dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wftest.server.acre</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wftest.server.backend.web</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wftest.common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+
+        <!-- dependencies for avoiding FAT WARs. See
+            http://maven.apache.org/plugins/maven-war-plugin/examples/skinny-wars.html -->
+        <!-- TODO: nothing here yet. Do we need something? -->
+    </dependencies>
+	
+</project>
