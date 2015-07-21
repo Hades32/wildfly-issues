@@ -6,14 +6,14 @@ define 'wftest.server' do
   project.group = 'wftest'
   project.version = '1.31.0-buildr'
 
-  JEE7 = 'javax:javaee-api:jar:7.0'
+  require './dependencies.rb'
 
   define 'wftest.server.ear' do
     package(:ear).add project('wftest.common')
     package(:ear).add :ejb=>project('wftest.server.acre')
     package(:ear).add :ejb=>project('wftest.server.ejb')
     package(:ear).add :war=>project('wftest.server.backend.web'), :context_root=>'eu/backend', :path=>''
-    package(:ear).include _('src/main/application/META-INF')
+    package(:ear).include _('src/main/application/META-INF') #ensure additional stuff is added
   end
 
   define 'wftest.server.ejb' do
