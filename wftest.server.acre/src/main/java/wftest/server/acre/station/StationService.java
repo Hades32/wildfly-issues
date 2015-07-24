@@ -10,7 +10,14 @@ import javax.ejb.Stateless;
 @Stateless
 @LocalBean
 public class StationService implements IStationService {
-    public Station getStation(){
-        return new Station("xxxxxx");
+	
+	@javax.persistence.PersistenceContext(name="HW30VserverACRE")
+	javax.persistence.EntityManager em1;
+
+	
+    public Station getStation(String name){
+		em1.toString();
+		//em1.getProperties().get("hibernate.ejb.persistenceUnitName").toString()+
+        return new Station("Station: "+"-"+em1.toString()+"-"+name);
     }
 }

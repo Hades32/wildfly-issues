@@ -13,6 +13,7 @@
 		<module>wftest.server.ear</module>
 		<module>wftest.server.ejb</module>
 		<module>wftest.common</module>
+		<module>wftest.common2</module>
 		<module>wftest.server.acre</module>
 		<module>wftest.server.backend.web</module>
 	</modules>

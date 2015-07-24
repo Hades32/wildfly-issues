@@ -91,6 +91,11 @@
 			<artifactId>wftest.common</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>wftest.common2</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 
 
         <!-- dependencies for avoiding FAT WARs. See
