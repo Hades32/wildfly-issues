@@ -1,2 +1,3 @@
 FROM jboss/wildfly
-ADD wftest.server.ear/target/wftest.server-wftest.server.ear-1.31.0-buildr.ear /opt/jboss/wildfly/standalone/deployments/
+ADD standalone.xml /opt/jboss/wildfly/standalone/configuration/standalone.xml
+ADD wftest.server.ear/target/*.ear /opt/jboss/wildfly/standalone/deployments/
